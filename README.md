@@ -1,0 +1,1 @@
+# mind_ripple_app
