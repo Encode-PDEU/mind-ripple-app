@@ -20,12 +20,13 @@ class MindRipple extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const HomeScreen(),
-      routes: {
-        LoginScreen.routeName: (context) => const LoginScreen(),
-        HomeScreen.routeName: (context) => const HomeScreen(),
-        QuizScreen.routeName: (context) => const QuizScreen(),
-      },
+      // home: const HomeScreen(),
+      // routes: {
+      //   LoginScreen.routeName: (context) => const LoginScreen(),
+      //   HomeScreen.routeName: (context) => const HomeScreen(),
+      //   QuizScreen.routeName: (context) => const QuizScreen(),
+      // },
+      home: LoginScreen(),
     );
   }
 }
