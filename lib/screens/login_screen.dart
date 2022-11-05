@@ -1,8 +1,9 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:mind_ripple/widgets/widgets.dart';
-
+import 'package:hexcolor/hexcolor.dart';
+import 'package:flutter/services.dart';
 import '../widgets/sample_widget.dart';
-import '../widgets/widgets.dart';
+import 'package:flutter/services.dart';
 
 /// [LoginScreen] is the first screen that the user will see.
 /// This screen has a login form.
@@ -10,7 +11,7 @@ import '../widgets/widgets.dart';
 /// [SampleWidget] is used to display a sample text.
 
 class LoginScreen extends StatefulWidget {
-  // static const String routeName = '/auth';
+  static const String routeName = '/auth';
   const LoginScreen({super.key});
 
   @override
@@ -23,75 +24,93 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: appBar(context),
-        backgroundColor: Colors.transparent,
-        elevation: 0.0,
-        brightness: Brightness.light,
-      ),
-      body: Form(
-        key: _formKey,
-        child: Container(
-          margin: EdgeInsets.symmetric(horizontal: 24),
-          child: Column(
-            children: [
-              Spacer(),
-              TextFormField(
-                // validator: (val){return val.isEmpty ? "Enter E-mail ID" : null;},
-                decoration: InputDecoration(
-                  hintText: "E-mail"
-                ),
-                onChanged: (val){email = val;},
-              ),
-              SizedBox(height: 6,),
-              TextFormField(
-                // validator: (val){return val.isEmpty ? "Enter password" : null;},
-                decoration: InputDecoration(
-                    hintText: "Password"
-                ),
-                onChanged: (val){password = val;},
-              ),
-              SizedBox(height: 24,),
-              Container(
-                height: 50,
-                decoration: BoxDecoration(
-                  color: Colors.blue,
-                  borderRadius: BorderRadius.circular(30.0),
-                ),
-                alignment: Alignment.center,
-                width: MediaQuery.of(context).size.width - 48,
-                child: Text(
-                  'Sign In',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 16.0,
-                  ),
-                ),
-              ),
-              SizedBox(height: 18,),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    'Don\'t have an account? ',
-                    style: TextStyle(
-                      fontSize: 15.5,
-                    ),
-                  ),
-                  Text(
-                    'Sign Up',
-                    style: TextStyle(
-                      fontSize: 15.5,
-                      decoration: TextDecoration.underline,
-                    ),
-                  )
-                ],
-              ),
+    final emailController = TextEditingController();
+    final passwordController = TextEditingController();
 
-              SizedBox(height: 80,),
-            ],
-          ),
+    return Scaffold(
+      backgroundColor: HexColor('#203D83'),
+      body: Center(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Spacer(),
+            SizedBox(
+              width: MediaQuery.of(context).size.width / 10 * 8,
+              height: MediaQuery.of(context).size.height / 17,
+              child: DecoratedBox(
+                decoration: BoxDecoration(
+                  color: Colors.white70,
+                ),
+                child: new TextField(
+                  // controller: emailController,
+                  textAlign: TextAlign.center,
+                  decoration: new InputDecoration(
+                    hintText: 'johndoe@sot.pdpu.ac.in',
+                    border: InputBorder.none
+                  ),
+                ),
+              ),
+            ),
+            SizedBox(height: 15.0,),
+            SizedBox(
+              width: MediaQuery.of(context).size.width / 10 * 8,
+              height: MediaQuery.of(context).size.height / 17,
+              child: DecoratedBox(
+                decoration: BoxDecoration(
+                  color: Colors.white70,
+                ),
+                child: new TextField(
+                  // controller: passwordController,
+                  obscureText: true,
+                  textAlign: TextAlign.center,
+                  decoration: new InputDecoration(
+                      hintText: 'password@123',
+                      border: InputBorder.none
+                  ),
+                ),
+              ),
+            ),
+            SizedBox(height: 15.0,),
+            Text('Forgot password? Reset here', style: TextStyle(color: Colors.white),),
+            SizedBox(height: 15.0,),
+            Container(
+              width: MediaQuery.of(context).size.width / 10 * 8,
+              height: MediaQuery.of(context).size.height / 25,
+              child: ElevatedButton(
+                style: ButtonStyle(
+                  backgroundColor: MaterialStatePropertyAll<HexColor>(HexColor('#BDCFFB')),
+                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(MediaQuery.of(context).size.height / 50),
+                  ))
+                ),
+                child: const Text('Sign In', style: TextStyle(color: Colors.indigo, fontWeight: FontWeight.bold),),
+                onPressed: () {
+                  // _submitForm(emailController.text.toString().trim(), passwordController.text.toString().trim(), context);
+                },
+              ),
+            ),
+            Spacer(),
+            Text('New User?', style: TextStyle(color: Colors.white),),
+            SizedBox(height: 15.0,),
+            Container(
+              width: MediaQuery.of(context).size.width / 10 * 8,
+              height: MediaQuery.of(context).size.height / 25,
+              child: ElevatedButton(
+                style: ButtonStyle(
+                    backgroundColor: MaterialStatePropertyAll<HexColor>(HexColor('#BDCFFB')),
+                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(MediaQuery.of(context).size.height / 50),
+                    ))
+                ),
+                child: const Text('Sign In', style: TextStyle(color: Colors.indigo, fontWeight: FontWeight.bold),),
+                onPressed: () {
+                  // _submitForm(emailController.text.toString().trim(), passwordController.text.toString().trim(), context);
+                },
+              ),
+            ),
+            SizedBox(height: 50,)
+          ],
         ),
       ),
     );

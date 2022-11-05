@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-
 import './screens/home_screen.dart';
 import './screens/login_screen.dart';
 import './screens/quiz_screen.dart';
+import 'package:hexcolor/hexcolor.dart';
 
 void main() {
   runApp(const MindRipple());
@@ -17,16 +17,13 @@ class MindRipple extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Mind Ripple',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      // home: const HomeScreen(),
-      // routes: {
-      //   LoginScreen.routeName: (context) => const LoginScreen(),
-      //   HomeScreen.routeName: (context) => const HomeScreen(),
-      //   QuizScreen.routeName: (context) => const QuizScreen(),
-      // },
-      home: LoginScreen(),
+      home: const LoginScreen(),
+      routes: {
+        LoginScreen.routeName: (context) => const LoginScreen(),
+        HomeScreen.routeName: (context) => const HomeScreen(),
+        QuizScreen.routeName: (context) => const QuizScreen(),
+      },
+      // home: LoginScreen(),
     );
   }
 }
